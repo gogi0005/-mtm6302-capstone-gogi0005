@@ -1,0 +1,147 @@
+
+body {
+	background-color: #ead6f1;
+	background: linear-gradient(to bottom right, #ecdeb8, #e3c67e);
+	font-family: Arial, sans-serif;
+  display: block;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#card-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 20px;
+}
+
+.card {
+	background-color: #fff4dc;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+	margin: 10px;
+	padding: 10px;
+	width: 250px;
+  display: grid;
+}
+
+.card img {
+	display: block;
+	margin: 0 auto;
+	max-width: 200px;
+}
+
+.card h2 {
+	font-size: 24px;
+	margin: 10px 0;
+	text-align: center;
+}
+
+.card p {
+	font-size: 16px;
+	margin: 5px 0;
+}
+
+#popup {
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	display: none;
+}
+
+#popup-content {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+	margin: 100px auto;
+	max-width: 500px;
+	padding: 20px;
+	position: relative;
+}
+
+#popup-name {
+	font-size: 24px;
+	margin: 10px 0;
+	text-align: center;
+}
+
+#popup-height, #popup-weight, #popup-abilities {
+	font-size: 16px;
+	margin: 5px 0;
+}
+
+#popup-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+#load-more {
+	background-color: #e9e1b5;
+	border: solid 1px rgb(17, 17, 17);
+	color: #080606;
+	display: flex;
+	font-size: 20px;
+	margin: 50px auto;
+	padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  
+}
+
+button.popup-button{
+  background-color: #7d4ccd;
+  border: solid;
+  border: .5px;
+  padding: 5px 10px;
+  color: #fff;
+  display: flexbox;
+  justify-content: center;
+  border: 1px solid rgb(255, 212, 41); 
+  border-radius: 5px; 
+}
+
+.card:hover{ 
+  box-shadow: 1px 8px 20px rgb(244, 186, 86);
+ transition:  box-shadow .1s ease-in;
+}
+
+#load-more:hover{
+  box-shadow: 1px 8px 20px goldenrod;
+  transition: box-shadow .2s ease-in-out;
+  background-color: #f3c545;
+}
+
+#popup-image {
+	max-width: 200%;
+	display: block;
+	margin: 0 auto;
+  }
+  
+  #popup-img-container {
+	text-align: center;
+  }
+  
+  #popup img {
+	width: 55%;
+	margin: 0 auto;
+	display: block;
+  }
+
+  .popup-close {
+	padding: 1rem;
+	background-color: #dce6f2;
+	padding: 1%;
+  }
+  
+  #popup-close:hover {
+	background-color: rgb(238, 170, 183);
+  transition: box-shadow .2s ease-in-out;
+  }
+  
