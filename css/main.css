@@ -1,7 +1,14 @@
+*{
+	border-radius: 2%;
+}
+
+button{
+	border-radius: 10px;
+}
 
 body {
 	background-color: #ead6f1;
-	background: linear-gradient(to bottom right, #ecdeb8, #e3c67e);
+	background: linear-gradient(to bottom right, #fbfbd3, #d1dee7);
 	font-family: Arial, sans-serif;
   display: block;
 }
@@ -56,12 +63,12 @@ h1 {
 }
 
 #popup-content {
-	background-color: #fff;
+	background-color: #ede8e8;
 	border: 1px solid #ccc;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 	margin: 100px auto;
 	max-width: 500px;
-	padding: 20px;
+	padding: 50px;
 	position: relative;
 }
 
@@ -83,8 +90,8 @@ h1 {
 }
 
 #load-more {
-	background-color: #e9e1b5;
-	border: solid 1px rgb(17, 17, 17);
+	background-color: #d1dee7;
+	border: solid 2.5px #20589d;
 	color: #080606;
 	display: flex;
 	font-size: 20px;
@@ -136,12 +143,89 @@ button.popup-button{
 
   .popup-close {
 	padding: 1rem;
-	background-color: #dce6f2;
+	background-color: #ebc9c9;
 	padding: 1%;
   }
   
   #popup-close:hover {
-	background-color: rgb(238, 170, 183);
+	background-color: rgb(222, 55, 55);
   transition: box-shadow .2s ease-in-out;
   }
   
+#Pokemon-logo{
+	width: 10%;
+  height: auto;
+}
+
+footer{
+	text-align: center;
+}
+
+#catch-btn{
+	background-color: #f0c949;
+	text-decoration: #7d4ccd;
+	padding: 10px 30px;
+	font-size: large;
+	font-weight: 100;
+}
+#release-btn{
+	background-color: #c1a8e8;
+	padding: 10px 30px;
+	font-weight: 100;
+	font-size: large;
+}
+
+#catch-btn, #release-btn{
+      font-family: Arial, Helvetica, sans-serif;
+}
+
+.popup-buttons{
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 5%;
+}
+
+/* Styles for screens smaller than 768px */
+@media (max-width: 767px) {
+
+	/* Set the width of images and containers to 100% for smaller screens */
+img {
+	width: 100%;
+  }
+  
+  .container {
+	width: 100%;
+  }
+  
+  /* Use flexible units like em or rem instead of fixed units like pixels */
+  h1 {
+	font-size: 2em;
+	margin-bottom: 1em;
+  }
+  
+  p {
+	font-size: 1em;
+	line-height: 1.5em;
+  }
+
+.card {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .card img {
+	margin-bottom: 1em;
+  }
+  
+  .card {
+	margin-bottom: 1em;
+	padding: 1em;
+  }
+  
+  #load-more {
+	margin: 1em auto;
+	display: block;
+  }
+  
+
+  }
