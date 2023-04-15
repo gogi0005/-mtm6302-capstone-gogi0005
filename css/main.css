@@ -188,7 +188,6 @@ footer{
 /* Styles for screens smaller than 768px */
 @media (max-width: 767px) {
 
-	/* Set the width of images and containers to 100% for smaller screens */
 img {
 	width: 100%;
   }
@@ -196,8 +195,6 @@ img {
   .container {
 	width: 100%;
   }
-  
-  /* Use flexible units like em or rem instead of fixed units like pixels */
   h1 {
 	font-size: 2em;
 	margin-bottom: 1em;
@@ -226,6 +223,4 @@ img {
 	margin: 1em auto;
 	display: block;
   }
-  
-
-  }
+}
