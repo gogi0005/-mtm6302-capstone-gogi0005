@@ -75,7 +75,7 @@ $(document).ready(function() {
 	  
 		  // Attach Catch and Release button click events
 		  $("#catch-btn").click(function() {
-			$("#catch-btn").text("Pokemon caught!");
+			$("#catch-btn").text("🥳 Pokemon caught! 🎉");
 			$("#catch-btn").attr("disabled", true);
 		  });
 		
