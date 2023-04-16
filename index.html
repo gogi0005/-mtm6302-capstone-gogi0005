@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pokedex</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-2oY/+tRnbw41POJrFkx2QZ9P9R+CKKp5JkjFYvFihyRU/3Kj+1ihCg8hLXRJm/Za+TkVL/tm6TovlJv7b6yFw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+	<h1>Pokedex</h1>
+
+	<div id="card-container">
+	<script src="https://kit.fontawesome.com/7b75cf5516.js" crossorigin="anonymous"></script>
+	<div id="popup" style="display: none;">
+		<div id="popup-content">
+		  <button id="popup-close" class="popup-close"><i class="fas fa-times"></i></button>
+		  <img id="popup-image" src="" alt="">
+		  <h2 id="popup-name"></h2>
+		  <p id="popup-height"></p>
+		  <p id="popup-weight"></p>
+		  <p id="popup-abilities"></p>
+		  <div class="popup-buttons">
+		 <button id="catch-btn">Catch</button>
+		 <button id="release-btn">Release</button>
+		</div>
+	</div>
+</div>
+</div>
+
+<div id="load-more-wrapper">
+<button id="load-more">Load More</button>
+</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="style.js"></script>
+</body>
+</html>
