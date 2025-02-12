@@ -1,95 +1,113 @@
 $(document).ready(function() {
+    var apiUrl = "https://pokeapi.co/api/v2/pokemon/";
+    var offset = 0;
+    var limit = 50;
+    var loading = false;
 
-	// Set up variables
-	var apiUrl = "https://pokeapi.co/api/v2/pokemon/";
-	var offset = 0;
-	var limit = 20;
-	var total = 0;
-	var loading = false;
+    loadData();
 
-	loadData();
+    $("#load-more").click(function() {
+        loadData();
+    });
 
-	$("#load-more").click(function() {
-		loadData();
-	});
+    $("#search-button").click(function() {
+        var query = $("#search-input").val().toLowerCase();
+        searchPokemon(query);
+    });
 
-	// Load data from API
-	function loadData() {
-		
-		if (loading) {
-			return;
-		}
+    function loadData() {
+        if (loading) return;
+        loading = true;
 
-		loading = true;
+        var url = apiUrl + "?offset=" + offset + "&limit=" + limit;
+        $.get(url, function(data) {
+            $.each(data.results, function(index, pokemon) {
+                createCard(pokemon);
+            });
+            offset += limit;
+            loading = false;
+        });
+    }
 
-		var url = apiUrl + "?offset=" + offset + "&limit=" + limit;
+    function createCard(pokemon) {
+        $.get(pokemon.url, function(data) {
+            var html = `
+                <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+                    <div class="card">
+                        <img src="${data.sprites.other["official-artwork"].front_default}" alt="${data.name}">
+                        <h2>${data.name}</h2>
+                        <button class="btn btn-info popup-button" data-url="${pokemon.url}">View Details</button>
+                    </div>
+                </div>`;
+            $("#card-container").append(html);
 
-		$.get(url, function(data) {
-			total = data.count;
+            $(".popup-button").click(function() {
+                showPopup($(this).data("url"));
+            });
+        });
+    }
 
-			$.each(data.results, function(index, pokemon) {
-				createCard(pokemon);
-			});
+    function showPopup(url) {
+        $.get(url, function(data) {
+            $("#popup-name").text(data.name);
+            $("#popup-image").attr("src", data.sprites.other["official-artwork"].front_default);
 
-			offset += limit;
+            // Fetch category and bio
+            $.get(data.species.url, function(speciesData) {
+                var category = speciesData.genera.find(genus => genus.language.name === "en").genus;
+                var bio = speciesData.flavor_text_entries.find(entry => entry.language.name === "en").flavor_text;
+                $("#popup-category").text("Category: " + category);
+                $("#popup-bio").html(bio.length > 150 ? bio.substring(0, 150) + '... <a href="#" id="view-more">View More</a>' : bio);
 
-			loading = false;
-		});
-	}
+                // Fetch evolution chain
+                $.get(speciesData.evolution_chain.url, function(evolutionData) {
+                    var evolutionChain = getEvolutionChain(evolutionData.chain);
+                    $("#popup-evolution").html(evolutionChain);
+                });
+            });
 
-	// Create card for each Pokemon
-	function createCard(pokemon) {
-		// Get data from API
-		$.get(pokemon.url, function(data) {
-			var html = '<div class="card">';
-			html += '<img src="' + data.sprites.front_default + '">';
-			html += '<h2>' + data.name + '</h2>';
-			html += '<button class="popup-button" data-url="' + pokemon.url + '">View Details</button>';
-			html += '</div>';
+            var details = `
+                <p>Height: ${data.height}</p>
+                <p>Weight: ${data.weight}</p>
+                <p>Category: <span id="popup-category"></span></p>
+                <p>Abilities: ${data.abilities.map(a => a.ability.name).join(", ")}</p>
+            `;
+            $("#popup-details").html(details);
 
-			$("#card-container").append(html);
+            $("#popup").modal('show');
 
-			$(".popup-button").click(function() {
-				showPopup($(this).data("url"));
-			});
-		});
-	}
+            $("#catch-btn").click(function() {
+                $("#catch-modal").modal('show');
+                $("#catch-btn").text("🥳 Pokemon caught! 🎉").attr("disabled", true);
+            });
 
-	function showPopup(url) {
-		// Get data from API
-		$.get(url, function(data) {
-		  $("#popup-name").text(data.name);
-		  $("#popup-height").text("Height: " + data.height);
-		  $("#popup-weight").text("Weight: " + data.weight);
-		  var abilities = "";
-		  $.each(data.abilities, function(index, ability) {
-			abilities += ability.ability.name;
-			if (index < data.abilities.length - 1) {
-			  abilities += ", ";
-			}
-		  });
-		  $("#popup-abilities").text("Abilities: " + abilities);
-		  $("#popup-image").attr("src", data.sprites.front_default);
-	  
-		  $("#popup").fadeIn();
-	  
-		  // Attach Catch and Release button click events
-		  $("#catch-btn").click(function() {
-			$("#catch-btn").text("🥳 Pokemon caught! 🎉");
-			$("#catch-btn").attr("disabled", true);
-		  });
-		
-		  $("#release-btn").click(function() {
-			$("#catch-btn").text("Catch");
-			$("#catch-btn").attr("disabled", false);
-		  });
-	  
-		});
-	  
-		$("#popup-close").click(function() {
-		  $("#popup").fadeOut();
-		});
-	  }
-	  
-	  
+            $("#release-btn").click(function() {
+                $("#catch-btn").text("Catch").attr("disabled", false);
+            });
+
+            $(document).on('click', '#view-more', function(e) {
+                e.preventDefault();
+                $("#popup-bio").text(bio);
+            });
+        });
+    }
+
+    function getEvolutionChain(chain) {
+        var evolutionChain = `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${chain.species.url.split('/')[6]}.png" alt="${chain.species.name}">`;
+        while (chain.evolves_to.length > 0) {
+            chain = chain.evolves_to[0];
+            evolutionChain += ` -> <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${chain.species.url.split('/')[6]}.png" alt="${chain.species.name}">`;
+        }
+        return evolutionChain;
+    }
+
+    function searchPokemon(query) {
+        var url = apiUrl + query;
+        $.get(url, function(data) {
+            $("#card-container").empty();
+            createCard(data);
+        }).fail(function() {
+            alert("Pokemon not found!");
+        });
+    }
 });

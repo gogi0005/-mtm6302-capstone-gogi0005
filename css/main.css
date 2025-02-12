@@ -1,226 +1,131 @@
-*{
-	border-radius: 2%;
-}
-
-button{
-	border-radius: 10px;
-}
-
 body {
-	background-color: #ead6f1;
-	background: linear-gradient(to bottom right, #fbfbd3, #d1dee7);
-	font-family: Arial, sans-serif;
-  display: block;
+    background: linear-gradient(to bottom right, #fbfbd3, #d1dee7);
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-	text-align: center;
-	margin-top: 50px;
+    font-size: 48pt;
+    font-weight: 600;
+    color: #333;
+    margin: 20px 0;
 }
 
-#card-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding: 20px;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure the container takes full width */
+    padding: 0 15px; /* Add padding to avoid content touching the edges */
+}
+
+.input-group .form-control {
+    border-radius: 5px 0 0 5px;
+}
+
+.input-group .btn {
+    border-radius: 0 5px 5px 0;
 }
 
 .card {
-	background-color: #fff4dc;
-	border: 1px solid #ccc;
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-	margin: 10px;
-	padding: 10px;
-	width: 250px;
-  display: grid;
+    background-color: #fff4dc;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+    width: 100%; /* Ensure the card takes full width of the column */
+    max-width: 2250px; /* Adjust the max-width to make the cards larger */
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .card img {
-	display: block;
-	margin: 0 auto;
-	max-width: 200px;
+    max-width: 100%;
+    padding: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card h2 {
-	font-size: 24px;
-	margin: 10px 0;
-	text-align: center;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555;
 }
 
-.card p {
-	font-size: 16px;
-	margin: 5px 0;
+.load-more-container {
+    text-align: center;
+    margin: 20px 0;
 }
 
-#popup {
-	background-color: rgba(0, 0, 0, 0.5);
-	height: 100%;
-	left: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	display: none;
+.load-more-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-#popup-content {
-	background-color: #ede8e8;
-	border: 1px solid #ccc;
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-	margin: 100px auto;
-	max-width: 500px;
-	padding: 50px;
-	position: relative;
+.load-more-container button:hover {
+    background-color: #0056b3;
 }
 
-#popup-name {
-	font-size: 24px;
-	margin: 10px 0;
-	text-align: center;
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    position: relative;
 }
 
-#popup-height, #popup-weight, #popup-abilities {
-	font-size: 16px;
-	margin: 5px 0;
+.modal-header .close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-#popup-close {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+.modal-header .close:hover,
+.modal-header .close:focus {
+    color: black;
+    text-decoration: none;
 }
 
-#load-more {
-	background-color: #d1dee7;
-	border: solid 2.5px #20589d;
-	color: #080606;
-	display: flex;
-	font-size: 20px;
-	margin: 50px auto;
-	padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  
+#popup img {
+    max-width: 100%;
 }
 
-button.popup-button{
-  background-color: #7d4ccd;
-  border: solid;
-  border: .5px;
-  padding: 5px 10px;
-  color: #fff;
-  display: flexbox;
-  justify-content: center;
-  border: 1px solid rgb(255, 212, 41); 
-  border-radius: 5px; 
+#popup-evolution img {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
 }
 
-.card:hover{ 
-  box-shadow: 1px 8px 20px rgb(244, 186, 86);
- transition:  box-shadow .1s ease-in;
+#popup-evolution img:hover {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
 }
 
-#load-more:hover{
-  box-shadow: 1px 8px 20px goldenrod;
-  transition: box-shadow .2s ease-in-out;
-  background-color: #f3c545;
+#catch-modal .modal-body p {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-#popup-image {
-	max-width: 200%;
-	display: block;
-	margin: 0 auto;
-  }
-  
-  #popup-img-container {
-	text-align: center;
-  }
-  
-  #popup img {
-	width: 55%;
-	margin: 0 auto;
-	display: block;
-  }
-
-  .popup-close {
-	padding: 1rem;
-	background-color: #ebc9c9;
-	padding: 1%;
-  }
-  
-  #popup-close:hover {
-	background-color: rgb(222, 55, 55);
-  transition: box-shadow .2s ease-in-out;
-  }
-  
-#Pokemon-logo{
-	width: 10%;
-  height: auto;
+#popup-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-footer{
-	text-align: center;
-}
-
-#catch-btn{
-	background-color: #f0c949;
-	text-decoration: #7d4ccd;
-	padding: 10px 30px;
-	font-size: large;
-	font-weight: 100;
-}
-#release-btn{
-	background-color: #c1a8e8;
-	padding: 10px 30px;
-	font-weight: 100;
-	font-size: large;
-}
-
-#catch-btn, #release-btn{
-      font-family: Arial, Helvetica, sans-serif;
-}
-
-.popup-buttons{
-	display: flex;
-	justify-content: space-evenly;
-	margin-top: 5%;
-}
-
-/* Styles for screens smaller than 768px */
-@media (max-width: 767px) {
-
-img {
-	width: 100%;
-  }
-  
-  .container {
-	width: 100%;
-  }
-  h1 {
-	font-size: 2em;
-	margin-bottom: 1em;
-  }
-  
-  p {
-	font-size: 1em;
-	line-height: 1.5em;
-  }
-
-.card {
-	display: flex;
-	flex-direction: column;
-  }
-  
-  .card img {
-	margin-bottom: 1em;
-  }
-  
-  .card {
-	margin-bottom: 1em;
-	padding: 1em;
-  }
-  
-  #load-more {
-	margin: 1em auto;
-	display: block;
-  }
+#popup-details p {
+    margin: 0 10px;
 }
